@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shmup.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 09:15:42 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 11:06:43 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,17 @@ typedef struct s_entity
 
 } t_entity;
 
+typedef struct s_bullet
+{
+	int active;
+	int x;
+	int y;
+	char character;
+} t_bullet;
+
 void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY]);
-t_entity	*create_player(int id);
+t_entity	*create_player(int row, int col);
 t_entity	*create_entity(int id);
+t_bullet	*create_bullet();
 
 #endif
