@@ -9,7 +9,7 @@ void bullet_update(t_bullet *bullet, int **obstacles)
 	{
 		bullet->active = false;
 	}
-	bullet->x++;
+	bullet->x += bullet->speed;
 }
 
 int	get_inactive_bullet(t_bullet *bullets[MAX_BULLET])
@@ -34,7 +34,7 @@ void fire(t_entity *player, int** obstacles, int time)
 	{
 		while (i < MAX_BULLET)
 		{
-			bullets[i] = create_bullet(player);
+			bullets[i] = create_bullet(player, 1);
 			i++;
 		}
 	}
@@ -64,8 +64,11 @@ int	loop()
 	static int **obstacles;
 	int			time = 0;
 	t_entity	*player;
+	t_entity	*monsters;
+	t_entity	*save;
 	int			key;
 
+	monsters = NULL;
 	if (obstacles == NULL)
 		obstacles = create_bg();
 	player = create_player(LINES, COLS);
@@ -75,6 +78,11 @@ int	loop()
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
     init_pair(2, COLOR_RED, COLOR_BLACK);
     init_pair(3, COLOR_WHITE, COLOR_BLACK);
+
+	monsters = add_monster(monsters, 20, 10);
+	monsters = add_monster(monsters, 25, 10);
+	monsters = add_monster(monsters, 35, 10);
+
 	key = 0;
 	while ((key = getch()) != '\n' && time < 2147483645)
 	{
@@ -93,6 +101,18 @@ int	loop()
 
 		mvprintw(player->y, player->x, "%c", player->character);
 		fire(player, obstacles, time);
+
+		save = monsters;
+		while (monsters)
+		{
+			mvprintw(monsters->y, monsters->x, "%c", monsters->character);
+			monsters->x--;
+			create_bullet(monsters, 1);
+			// print bullet
+
+			monsters = monsters->next;
+		}
+		monsters = save;
 
 		if (player_collision(player, obstacles))
 		{

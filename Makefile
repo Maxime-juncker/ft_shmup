@@ -1,7 +1,7 @@
 NAME = ft_shmup
 CFLAGS = -Wall -Wextra -Werror -g3 $(INCLUDES_D)
 
-SRC = main.c entities.c background.c collisions.c
+SRC = main.c entities.c background.c collisions.c monster.c
 OBJ = $(SRC:.c=.o)
 
 OBJ_D = obj/

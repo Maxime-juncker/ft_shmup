@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 16:00:33 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:02:45 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_entity	*create_player(int row, int col)
 	return (player);
 }
 
-t_bullet	*create_bullet(t_entity *source)
+t_bullet	*create_bullet(t_entity *source, int speed)
 {
 	t_bullet	*bullet;
 
@@ -55,6 +55,7 @@ t_bullet	*create_bullet(t_entity *source)
 	bullet->character = '-';
 	bullet->x = source->x;
 	bullet->y = source->y;
+	bullet->speed = speed;
 	return (bullet);
 }
 
