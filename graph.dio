@@ -1,0 +1,75 @@
+<mxfile host="65bd71144e">
+    <diagram id="F87WOm9uHOPUeexvM1jN" name="Page-1">
+        <mxGraphModel dx="840" dy="457" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="6" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="4" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="START" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="250" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="5" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="init ncurses" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="420" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="loop function" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="560" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="9" target="18">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="9" target="22">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="game continue" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="560" y="670" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="18" target="20">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="calculate game logic&lt;br&gt;(enemy spawn, player input, etc...)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="700" y="680" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="20" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="clear win and draw&lt;br&gt;entities" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="850" y="680" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="close win" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="680" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="false" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="505" y="685" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="true" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="640" y="685" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="26" target="7">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1040" y="800"/>
+                            <mxPoint x="1040" y="590"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="draw hud (point, score etc...)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="850" y="770" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="player and enemies" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1020" y="140" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="&lt;ul&gt;&lt;li&gt;move speed&lt;/li&gt;&lt;li&gt;fire rate&lt;/li&gt;&lt;li&gt;health&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+                    <mxGeometry x="1010" y="190" width="150" height="100" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
