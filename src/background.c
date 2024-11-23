@@ -1,19 +1,73 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   background.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 09:27:51 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 09:48:48 by mjuncker         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "shmup.h"
 
-void	draw_background(char **bakcground)
+void	update_obstacles(int **obstacles, int time)
 {
+	int x = 0;
+	int y = 0;
+
 	box(stdscr, ACS_VLINE, ACS_HLINE);
-	
+
+	while (y < LINES)
+	{
+		x = 0;
+		while (x < COLS)
+		{
+			if (obstacles[y][x] == 0)
+			{
+				x++;
+				continue;
+			}
+			if (time % 2 == 0)
+			{
+				obstacles[y][x-1] = 1;
+				obstacles[y][x] = 0;
+			}
+			move(y, x);
+			addch('X');
+			x++;
+		}
+		y++;
+	}
+}
+
+int create_obstacle(int **obstacles, int time)
+{
+	int y = 0;
+
+	while (y < LINES)
+	{
+		srand(time);
+
+		if ((rand() + y) % 150 == 1)
+			obstacles[y][COLS - 1] = 1;
+		y++;
+	}
+	return (1);
+}
+
+int **create_bg()
+{
+	int **obstacles;
+
+	obstacles = ft_calloc(LINES, sizeof(int *));
+	for (int i = 0; i < LINES; i++)
+	{
+		obstacles[i] = ft_calloc(COLS, sizeof(int));
+	}
+	return (obstacles);
+}
+
+void draw_bg(int time)
+{
+	static int **obstacles;
+
+	(void)time;
+	if (obstacles == NULL)
+		obstacles = create_bg();
+	create_obstacle(obstacles, time);
+
+	attron(COLOR_PAIR(2));
+	update_obstacles(obstacles, time);
+	attron(COLOR_PAIR(1));
+
 }

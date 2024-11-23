@@ -1,67 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11 /23 08:12:02 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 08:16:02 by mjuncker         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "shmup.h"
-
-
-void	update_obstacles(int **obstacles)
-{
-	int x = 0;
-	int y = 0;
-
-	box(stdscr, ACS_VLINE, ACS_HLINE);
-
-	while (y < LINES)
-	{
-		x = 0;
-		while (x < COLS)
-		{
-			if (obstacles[y][x] == 0)
-			{
-				x++;
-				continue;
-			}
-			obstacles[y][x-1] = 1;
-			obstacles[y][x] = 0;
-			move(y, x);
-			addch('X');
-			x++;
-		}
-		y++;
-	}
-}
-
-int create_obstacle(int **obstacles, int time)
-{
-	int y = 0;
-
-	while (y < LINES)
-	{
-		if ((time + y ) % 5 == 1)
-			obstacles[y][COLS - 1] = 1;
-	}
-	return (1);
-}
 
 int	loop()
 {
-	int **obstacles;
-	obstacles = ft_calloc(LINES, sizeof(int *));
-	for (int i = 0; i < LINES; i++)
-	{
-		obstacles[i] = ft_calloc(COLS, sizeof(int));
-	}
-	obstacles[10][15] = 1;
-
 	int			time = 0;
 	t_entity	*player;
 	t_bullet	*bullet;
@@ -73,10 +13,13 @@ int	loop()
 	keypad(stdscr, TRUE);
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
-	attron(COLOR_PAIR(1));
+    init_pair(2, COLOR_RED, COLOR_BLACK);
 	key = 0;
 	while ((key = getch()) != '\n')
 	{
+		attron(COLOR_PAIR(1));
+		draw_bg(time);
+		move(1, 1);
 		printw("Window active since: %ds  x=%d  y=%d\n", time, player->x, player->y);
 
 		if (key == KEY_UP && player->y > 1)player->y -= 1;
@@ -101,7 +44,6 @@ int	loop()
 		}
 		mvprintw(bullet->y, bullet->x, "%c", bullet->character);
 
-		update_obstacles(obstacles);
 		refresh();
 		time += 1;
 		napms(16);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shmup.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 11:06:43 by mchemari         ###   ########.fr       */
+/*   Updated: 2024/11/23 11:30:32 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY]);
 t_entity	*create_player(int row, int col);
 t_entity	*create_entity(int id);
 t_bullet	*create_bullet();
+
+
+void draw_bg(int time);
 
 #endif
