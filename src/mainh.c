@@ -12,20 +12,76 @@
 
 #include "shmup.h"
 
+
+void	update_obstacles(int **obstacles)
+{
+	int x = 0;
+	int y = 0;
+
+	// printw("%d %d", COLS, LINES);
+
+	while (y < LINES)
+	{
+		x = 0;
+		while (x < COLS)
+		{
+			if (obstacles[y][x] == 0)
+			{
+				x++;
+				continue;
+			}
+			obstacles[y][x-1] = 1;
+			obstacles[y][x] = 0;
+			move(y, x);
+			addch('X');
+			x++;
+		}
+		y++;
+	}
+}
+
+int create_obstacle(int **obstacles, int time)
+{
+	int y = 0;
+
+	while (y < LINES)
+	{
+		if ((time + y ) % 5 == 1)
+			obstacles[y][COLS - 1] = 1;
+	}
+	return (1);
+}
+
 int	loop()
 {
-	int	time = 0;
+	int **obstables;
+	int time = 0;
 
+	int y = 0;
+
+	obstables = ft_calloc(LINES, sizeof(int *));
+	if (!obstables)
+		return (1);
+	while (y < LINES)
+	{
+		obstables[y] = ft_calloc(COLS, sizeof(int));
+		if (!obstables[y])
+			return (1);
+		y++;
+	}
+
+	obstables[10][10] = 1;
 	nodelay(stdscr, TRUE);
 	while (getch() == ERR)
 	{
-		printw("Window active since: %ds\n", time);
+		box(stdscr, ACS_VLINE, ACS_HLINE);
+		update_obstacles(obstables);
 		refresh();
-		time += 1;
-		napms(1000);
+		napms(16);
 		clear();
+		create_obstacle(obstables, time);
+		time++;
 	}
-	printw("Window was active for %ds", time);
 	refresh();
 	nodelay(stdscr, FALSE);
 
@@ -34,12 +90,9 @@ int	loop()
 
 int main()
 {
-	// t_entity entities[MAX_ENTITY];
-	// add_entity(create_entity(PLAYER_ID), entities);
 	initscr();
+	curs_set(0);
 	loop();
-
-	getch();
 
 	endwin();
 	return (0);
