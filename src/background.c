@@ -61,7 +61,7 @@ int draw_bg(int **obstacles, int time)
 {
 	create_obstacle(obstacles, time);
 
-	attron(COLOR_PAIR(2));
+	attron(COLOR_PAIR(3));
 	update_obstacles(obstacles, time);
 
 	return (0);

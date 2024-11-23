@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 13:40:31 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:10:40 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ t_entity	*create_player(int row, int col)
 	player->x = 2;
 	player->y = row / 2;
 	player->speed = 1;
-	player->health = 3;
+	player->health = 100;
 	player->character = '>';
-	player->fireate = 1;
+	player->fireate = 50;
 	return (player);
 }
 
-t_bullet	*create_bullet()
+t_bullet	*create_bullet(t_entity *source)
 {
 	t_bullet	*bullet;
 
@@ -53,6 +53,8 @@ t_bullet	*create_bullet()
 		return (NULL);
 	bullet->active = 0;
 	bullet->character = '-';
+	bullet->x = source->x;
+	bullet->y = source->y;
 	return (bullet);
 }
 

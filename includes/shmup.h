@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 13:41:08 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:10:22 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_bullet
 void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY]);
 t_entity	*create_player(int row, int col);
 t_entity	*create_entity(int id);
-t_bullet	*create_bullet();
+t_bullet	*create_bullet(t_entity *source);
 
 
 int draw_bg(int **obstacles, int time);
