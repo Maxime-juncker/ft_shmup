@@ -6,7 +6,7 @@
 /*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 11:06:43 by mchemari         ###   ########.fr       */
+/*   Updated: 2024/11/23 11:46:39 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <ncurses.h>
 # include <libft.h>
+# include <stdlib.h>
 
 # define PLAYER_ID	0
 
@@ -22,7 +23,21 @@
 # define MAX_ENTITY 128
 # endif
 
-typedef struct s_entity
+typedef struct s_player
+{
+	int	id;
+
+	int	x;
+	int	y;
+
+	int	speed;
+	int	fireate;
+	int	health;
+	char character;
+
+} t_player;
+
+typedef struct t_entity
 {
 	int	id;
 
@@ -44,8 +59,8 @@ typedef struct s_bullet
 	char character;
 } t_bullet;
 
-void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY]);
-t_entity	*create_player(int row, int col);
+// void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY]);
+t_player	*create_player(int row, int col);
 t_entity	*create_entity(int id);
 t_bullet	*create_bullet();
 

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   entities.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 11:09:07 by mchemari         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "shmup.h"
 
 
@@ -25,12 +13,12 @@ void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY])
 	entities[new->id] = new;
 }
 
-t_entity	*create_player(int row, int col)
+t_player	*create_player(int row, int col)
 {
-	t_entity *player = NULL;
+	t_player *player = NULL;
 	(void)col;
 
-	player = ft_calloc(sizeof(t_entity), 1);
+	player = ft_calloc(sizeof(t_player), 1);
 	if (!player) // !! maybe replace later by calling a cleanup funciton
 		return (NULL);
 
