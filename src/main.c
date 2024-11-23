@@ -13,10 +13,11 @@ int	get_inactive_bullet(t_bullet *bullets[MAX_BULLET])
 {
 	int	i = 0;
 
-	while (bullets[i])
+	while (i < MAX_BULLET)
 	{
-		if (!bullets[i]->active)
+		if (!bullets[i]->enable)
 			return (i);
+		i++;
 	}
 	return (-1);
 }
@@ -36,13 +37,14 @@ void fire(t_entity *player, int time)
 	}
 
 	i = 0;
-	while (bullets[i])
+	while (i < MAX_BULLET)
 	{
-		if (bullets[i]->active)
+		if (bullets[i]->enable)
 			bullet_update(bullets[i]);
 		i++;
 	}
 
+	i = 0;
 	if (time % player->fireate == 0)
 	{
 		i = get_inactive_bullet(bullets);
@@ -50,7 +52,7 @@ void fire(t_entity *player, int time)
 			return ;
 		bullets[i]->x = player->x;
 		bullets[i]->y = player->y;
-		bullets[i]->active = true;
+		bullets[i]->enable = true;
 	}
 }
 
@@ -87,8 +89,7 @@ int	loop()
 		if (key == KEY_RIGHT && player->x < COLS - 1)player->x += 1;
 
 		mvprintw(player->y, player->x, "%c", player->character);
-		//fire(player, time);
-
+		fire(player, time);
 
 		if (obstacle_collide(obstacles, player))
 		{

@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 14:10:22 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:43:16 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_entity
 
 typedef struct s_bullet
 {
-	int active;
+	short int enable;
 	int x;
 	int y;
 	char character;
