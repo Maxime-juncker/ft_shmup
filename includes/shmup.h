@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 13:04:37 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:41:08 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define MAX_ENTITY 128
 # endif
 
+# ifndef MAX_BULLET
+# define MAX_BULLET 128
+# endif
 typedef struct s_entity
 {
 	int	id;

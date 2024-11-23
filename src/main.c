@@ -20,9 +20,11 @@ int	loop()
 	key = 0;
 	while ((key = getch()) != '\n')
 	{
-		attron(COLOR_PAIR(1));
+		draw_bg(obstacles, time);
+		if (player->health > 1)
+			attron(COLOR_PAIR(1));
 		move(1, 1);
-		printw("Window active since: %ds  x=%d  y=%d\n", time, player->x, player->y);
+		printw("score: %dp  x=%d  y=%d health=%d", time, player->x, player->y, player->health);
 
 		if (key == KEY_UP && player->y > 1)player->y -= 1;
 		if (key == KEY_DOWN && player->y < LINES - 1)player->y += 1;
@@ -31,7 +33,6 @@ int	loop()
 
 		mvprintw(player->y, player->x, "%c", player->character);
 
-		draw_bg(obstacles, time);
 		if (!bullet->active)
 		{
 			bullet->active = 1;
@@ -54,19 +55,27 @@ int	loop()
 		mvprintw(bullet->y, bullet->x, "%c", bullet->character);
 
 		if (obstacle_collide(obstacles, player))
-			break;
+		{
+			player->health--;
+			obstacles[player->y][player->x] = 0;
+			obstacles[player->y][player->x-1] = 0;
+			if (player->health == 0)
+				break;
+		}
 
 		refresh();
 		time += 1;
 		napms(16);
 		clear();
 	}
-
+	clear();
+	printw("final score: %d\n", time);
 	refresh();
 	nodelay(stdscr, FALSE);
 
 	return (0);
 }
+
 
 int main()
 {

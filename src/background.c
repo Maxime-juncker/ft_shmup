@@ -23,7 +23,7 @@ static void	update_obstacles(int **obstacles, int time)
 				obstacles[y][x] = 0;
 			}
 			move(y, x);
-			addch('X');
+			addch('o');
 			x++;
 		}
 		y++;
@@ -63,7 +63,6 @@ int draw_bg(int **obstacles, int time)
 
 	attron(COLOR_PAIR(2));
 	update_obstacles(obstacles, time);
-	attron(COLOR_PAIR(1));
 
 	return (0);
 

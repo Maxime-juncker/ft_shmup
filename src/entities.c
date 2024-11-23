@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 11:09:07 by mchemari         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:40:31 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_entity	*create_player(int row, int col)
 	player->x = 2;
 	player->y = row / 2;
 	player->speed = 1;
-	player->health = 1;
+	player->health = 3;
 	player->character = '>';
 	player->fireate = 1;
 	return (player);
@@ -59,13 +59,8 @@ t_bullet	*create_bullet()
 
 t_entity	*create_entity(int id)
 {
-	// static int 	id = 0;
 	t_entity *entity = NULL;
 
-	// if (id == PLAYER_ID)
-	// 	return (create_player());
-	// id++;
-	
 	if (id > MAX_ENTITY)
 		return (NULL);
 	entity = ft_calloc(sizeof(t_entity), 1);

@@ -18,12 +18,7 @@ int obstacle_collide(int **obstacles, t_entity *src)
 		while (x < COLS)
 		{
 			if (obstacles[y][x] == 1 && collide(src, x, y))
-			{
-				clear();
-				printw("You lost");
-				refresh();
 				return(1);
-			}
 			x++;
 		}
 		y++;
