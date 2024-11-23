@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 14:43:16 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:00:33 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_bullet	*create_bullet(t_entity *source)
 	bullet = ft_calloc(sizeof(t_bullet), 1);
 	if (!bullet)
 		return (NULL);
-	bullet->enable = 0;
+	bullet->active = 0;
 	bullet->character = '-';
 	bullet->x = source->x;
 	bullet->y = source->y;

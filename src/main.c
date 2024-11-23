@@ -1,11 +1,14 @@
 #include "shmup.h"
 
-void bullet_update(t_bullet *bullet)
+void bullet_update(t_bullet *bullet, int **obstacles)
 {
 	if (!bullet)
 		return ;
 	mvprintw(bullet->y, bullet->x, "%c", bullet->character);
-
+	if (bullet_collision(bullet, obstacles))
+	{
+		bullet->active = false;
+	}
 	bullet->x++;
 }
 
@@ -15,14 +18,14 @@ int	get_inactive_bullet(t_bullet *bullets[MAX_BULLET])
 
 	while (i < MAX_BULLET)
 	{
-		if (!bullets[i]->enable)
+		if (!bullets[i]->active)
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-void fire(t_entity *player, int time)
+void fire(t_entity *player, int** obstacles, int time)
 {
 	static t_bullet	*bullets[MAX_BULLET] = {NULL};
 	int			i = 0;
@@ -39,8 +42,8 @@ void fire(t_entity *player, int time)
 	i = 0;
 	while (i < MAX_BULLET)
 	{
-		if (bullets[i]->enable)
-			bullet_update(bullets[i]);
+		if (bullets[i]->active)
+			bullet_update(bullets[i], obstacles);
 		i++;
 	}
 
@@ -52,7 +55,7 @@ void fire(t_entity *player, int time)
 			return ;
 		bullets[i]->x = player->x;
 		bullets[i]->y = player->y;
-		bullets[i]->enable = true;
+		bullets[i]->active = true;
 	}
 }
 
@@ -89,9 +92,9 @@ int	loop()
 		if (key == KEY_RIGHT && player->x < COLS - 1)player->x += 1;
 
 		mvprintw(player->y, player->x, "%c", player->character);
-		fire(player, time);
+		fire(player, obstacles, time);
 
-		if (obstacle_collide(obstacles, player))
+		if (player_collision(player, obstacles))
 		{
 			player->health -= 45;
 			obstacles[player->y][player->x] = 0;

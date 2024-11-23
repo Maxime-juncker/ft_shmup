@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 14:43:16 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:05:16 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_entity
 
 typedef struct s_bullet
 {
-	short int enable;
+	short int active;
 	int x;
 	int y;
 	char character;
@@ -56,8 +56,9 @@ t_bullet	*create_bullet(t_entity *source);
 int draw_bg(int **obstacles, int time);
 int **create_bg();
 
-int	collide(t_entity *src, int xsrc, int ysrc);
-int obstacle_collide(int **obstacles, t_entity *src);
+int	collide(int x1, int y1, int x2, int y2);
+int bullet_collision(t_bullet *bullet, int **obstacles);
+int player_collision(t_entity *player, int **obstacles);
 
 
 #endif
