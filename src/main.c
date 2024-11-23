@@ -2,11 +2,14 @@
 
 int	loop()
 {
+	static int **obstacles;
 	int			time = 0;
 	t_entity	*player;
 	t_bullet	*bullet;
 	int			key;
 
+	if (obstacles == NULL)
+		obstacles = create_bg();
 	player = create_player(LINES, COLS);
 	bullet = create_bullet();
 	nodelay(stdscr, TRUE);
@@ -18,7 +21,7 @@ int	loop()
 	while ((key = getch()) != '\n')
 	{
 		attron(COLOR_PAIR(1));
-		draw_bg(time);
+		draw_bg(obstacles, time);
 		move(1, 1);
 		printw("Window active since: %ds  x=%d  y=%d\n", time, player->x, player->y);
 
@@ -44,12 +47,14 @@ int	loop()
 		}
 		mvprintw(bullet->y, bullet->x, "%c", bullet->character);
 
+		if (player_collide(obstacles, player))
+			break;
+
 		refresh();
 		time += 1;
 		napms(16);
 		clear();
 	}
-	printw("Window was active for %ds", time);
 
 	refresh();
 	nodelay(stdscr, FALSE);
@@ -62,7 +67,7 @@ int main()
 	initscr();
 	curs_set(0);
 	loop();
-
+	getch();
 	endwin();
 	return (0);
 }

@@ -1,6 +1,6 @@
 #include "shmup.h"
 
-void	update_obstacles(int **obstacles, int time)
+static void	update_obstacles(int **obstacles, int time)
 {
 	int x = 0;
 	int y = 0;
@@ -30,7 +30,7 @@ void	update_obstacles(int **obstacles, int time)
 	}
 }
 
-int create_obstacle(int **obstacles, int time)
+static int create_obstacle(int **obstacles, int time)
 {
 	int y = 0;
 
@@ -57,17 +57,14 @@ int **create_bg()
 	return (obstacles);
 }
 
-void draw_bg(int time)
+int draw_bg(int **obstacles, int time)
 {
-	static int **obstacles;
-
-	(void)time;
-	if (obstacles == NULL)
-		obstacles = create_bg();
 	create_obstacle(obstacles, time);
 
 	attron(COLOR_PAIR(2));
 	update_obstacles(obstacles, time);
 	attron(COLOR_PAIR(1));
+
+	return (0);
 
 }

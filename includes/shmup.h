@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 11:30:32 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:50:19 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ t_entity	*create_entity(int id);
 t_bullet	*create_bullet();
 
 
-void draw_bg(int time);
+int draw_bg(int **obstacles, int time);
+int **create_bg();
+
+int	collide(t_entity *player, int xsrc, int ysrc);
+int player_collide(int **obstacles, t_entity *player);
+
 
 #endif
