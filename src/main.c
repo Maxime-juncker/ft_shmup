@@ -21,7 +21,6 @@ int	loop()
 	while ((key = getch()) != '\n')
 	{
 		attron(COLOR_PAIR(1));
-		draw_bg(obstacles, time);
 		move(1, 1);
 		printw("Window active since: %ds  x=%d  y=%d\n", time, player->x, player->y);
 
@@ -32,6 +31,7 @@ int	loop()
 
 		mvprintw(player->y, player->x, "%c", player->character);
 
+		draw_bg(obstacles, time);
 		if (!bullet->active)
 		{
 			bullet->active = 1;
@@ -40,14 +40,20 @@ int	loop()
 		}
 		else
 		{
-			if (bullet->x == COLS)
+			if (obstacles[bullet->y][bullet->x] == 1 || obstacles[bullet->y][bullet->x-1] == 1)
+			{
+				bullet->active = 0;
+				obstacles[bullet->y][bullet->x] = 0;
+				obstacles[bullet->y][bullet->x-1] = 0;
+			}
+			else if (bullet->x == COLS)
 				bullet->active = 0;
 			else
 				bullet->x += 1;
 		}
 		mvprintw(bullet->y, bullet->x, "%c", bullet->character);
 
-		if (player_collide(obstacles, player))
+		if (obstacle_collide(obstacles, player))
 			break;
 
 		refresh();

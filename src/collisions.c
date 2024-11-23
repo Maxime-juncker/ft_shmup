@@ -1,13 +1,13 @@
 #include "shmup.h"
 
-int	collide(t_entity *player, int xsrc, int ysrc)
+int	collide(t_entity *src, int xsrc, int ysrc)
 {
-	if (player->x == xsrc && player->y == ysrc)
+	if (src->x == xsrc && src->y == ysrc)
 		return (1);
 	return (0);
 }
 
-int player_collide(int **obstacles, t_entity *player)
+int obstacle_collide(int **obstacles, t_entity *src)
 {
 	int x = 0;
 	int y = 0;
@@ -17,7 +17,7 @@ int player_collide(int **obstacles, t_entity *player)
 		x = 0;
 		while (x < COLS)
 		{
-			if (obstacles[y][x] == 1 && collide(player, x, y))
+			if (obstacles[y][x] == 1 && collide(src, x, y))
 			{
 				clear();
 				printw("You lost");

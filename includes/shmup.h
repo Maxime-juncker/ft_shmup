@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 12:50:19 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:04:37 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ t_bullet	*create_bullet();
 int draw_bg(int **obstacles, int time);
 int **create_bg();
 
-int	collide(t_entity *player, int xsrc, int ysrc);
-int player_collide(int **obstacles, t_entity *player);
+int	collide(t_entity *src, int xsrc, int ysrc);
+int obstacle_collide(int **obstacles, t_entity *src);
 
 
 #endif

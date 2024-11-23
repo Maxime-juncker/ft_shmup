@@ -38,7 +38,7 @@ static int create_obstacle(int **obstacles, int time)
 	{
 		srand(time);
 
-		if ((rand() + y) % 150 == 1)
+		if ((rand() + y) % 130 == 1)
 			obstacles[y][COLS - 1] = 1;
 		y++;
 	}
