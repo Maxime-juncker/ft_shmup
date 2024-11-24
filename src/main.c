@@ -12,7 +12,7 @@ void bullet_update(t_bullet *bullet, t_entity *player, int **obstacles)
 	else if (collide(player->x, player->y, bullet->x, bullet->y))
 	{
 		bullet->active = false;
-		player->health -= 50;
+		player->health -= 45;
 	}
 	bullet->x += bullet->speed;
 	attron(COLOR_PAIR(3));
