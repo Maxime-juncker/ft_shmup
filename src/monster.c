@@ -33,7 +33,7 @@ t_entity   *remove_monster(t_entity *head, t_entity *to_remove)
     {
         if (current == to_remove)
         {
-            previous->next = current->next; 
+            previous->next = current->next;
             free(current);
             return (head);
         }
@@ -64,6 +64,46 @@ t_entity *monsters_collide(t_entity *player, t_entity *monsters)
         current = next;
     }
     return (monsters);
+}
+
+void enemy_fire(int x, int y, t_bullet *bullets[MAX_BULLET])
+{
+	int			i = 0;
+
+	if (rand() % 100 == 0)
+	{
+		i = get_inactive_bullet(bullets);
+		if (i == -1)
+			return ;
+		bullets[i]->x = x - 2;
+		bullets[i]->y = y;
+		bullets[i]->speed = -1;
+		bullets[i]->active = 1;
+		bullets[i]->color = 2;
+	}
+
+}
+
+void	ememy_update(int **obstacles, t_bullet *bullets[MAX_BULLET])
+{
+	int x = 0;
+	int y = 0;
+	int	tmp = 0;
+
+	while (y < LINES)
+	{
+		x = 0;
+		while (x < COLS)
+		{
+			tmp = obstacles[y][x];
+			if (tmp == 4)
+			{
+				enemy_fire(x, y, bullets);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 //fct qui va appeller check_collide

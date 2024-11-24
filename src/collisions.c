@@ -17,7 +17,8 @@ int obstacle_collide(int **obstacles, int xsrc, int ysrc)
 		x = 0;
 		while (x < COLS)
 		{
-			if (obstacles[y][x] == 1 && collide(xsrc, ysrc, x, y))
+			if ((obstacles[y][x] > 0 || obstacles[y][x - 1] > 0)
+				&& collide(xsrc, ysrc, x, y))
 			{
 				obstacles[y][x] = 0;
 				obstacles[y][x - 1] = 0;

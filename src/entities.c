@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/23 17:02:45 by mchemari         ###   ########.fr       */
+/*   Updated: 2024/11/24 10:02:22 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
  * @param new the new entity
  * @param entities the arr containing all entities
 */
-void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY])
-{
-	if (!new)
-		return ;
-	entities[new->id] = new;
-}
 
 t_entity	*create_player(int row, int col)
 {
@@ -40,11 +34,11 @@ t_entity	*create_player(int row, int col)
 	player->speed = 1;
 	player->health = 100;
 	player->character = '>';
-	player->fireate = 50;
+	player->fireate = 20;
 	return (player);
 }
 
-t_bullet	*create_bullet(t_entity *source, int speed)
+t_bullet	*create_bullet(int speed)
 {
 	t_bullet	*bullet;
 
@@ -53,8 +47,6 @@ t_bullet	*create_bullet(t_entity *source, int speed)
 		return (NULL);
 	bullet->active = 0;
 	bullet->character = '-';
-	bullet->x = source->x;
-	bullet->y = source->y;
 	bullet->speed = speed;
 	return (bullet);
 }
