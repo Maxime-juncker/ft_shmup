@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:42 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 13:40:53 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:10:50 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	game_over(t_map_data *map)
 {
 	nodelay(stdscr, FALSE);
 	clear();
-	printw("final score: %d\n", map->score);
+	box(stdscr, ACS_VLINE, ACS_HLINE);
+	mvprintw(LINES / 2, (COLS / 2) - 8, "Final score : %d", map->score);
 	refresh();
 	getch();
 }
@@ -118,7 +119,6 @@ int	loop()
 		// wait next frame
 		napms(16);
 		time++;
-		map->score++;
 	}
 	game_over(map);
 	return (cleanup(map));
@@ -132,7 +132,7 @@ void init()
 
 	curs_set(0);
 	nodelay(stdscr, TRUE);
-	keypad(stdscr, TRUE);
+	keypad(stdscr, TRUE);\
 
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);

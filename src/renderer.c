@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:48 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 13:44:41 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:58:18 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	draw_hud(t_map_data *map)
 		attron(COLOR_PAIR(1));
 	box(stdscr, ACS_VLINE, ACS_HLINE);
 	move(1, 1);
-	printw("score=%dp  x=%d  y=%d ship-intergrity=%d%%",
+	printw("score=%dp  x=%d  y=%d  ship-intergrity=%d%%",
 	map->score, map->player->x, map->player->y, map->player->health);
 
 }
