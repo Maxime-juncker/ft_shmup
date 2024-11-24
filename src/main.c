@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:42 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 17:25:55 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:46:40 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	cleanup(t_map_data *map)
 	return (0);
 }
 
-t_map_data	*create_map()
+t_map_data	*create_map(int difficulty)
 {
 	t_map_data	*map;
 	int	i = 0;
@@ -56,6 +56,25 @@ t_map_data	*create_map()
 	{
 		map->bullets[i] = NULL;
 		i++;
+	}
+
+	if (difficulty == 0)
+	{
+		map->asteroid_rate = 150;
+		map->basic_enemy_rate = 1000;
+		map->hard_enemy_rate = 2147483647;
+	}
+	else if (difficulty == 1)
+	{
+		map->asteroid_rate = 150;
+		map->basic_enemy_rate = 500;
+		map->hard_enemy_rate = 800;
+	}
+	else if (difficulty == 2)
+	{
+		map->asteroid_rate = 300;
+		map->basic_enemy_rate = 100;
+		map->hard_enemy_rate = 200;
 	}
 	return (map);
 }
@@ -98,7 +117,7 @@ void	game_over(t_map_data *map, int time)
 void	print_in_middle(char *msg, int y_offset, int x_offset)
 {
 	int len = ft_strlen(msg);
-	mvprintw(LINES / 2 + y_offset, (COLS / 2) - len + x_offset, "%s", msg);
+	mvprintw(LINES / 2 + y_offset, (COLS / 2) - (len / 2) + x_offset, "%s", msg);
 }
 
 int menu(int selected)
@@ -108,21 +127,27 @@ int menu(int selected)
 	clear();
 	nodelay(stdscr, FALSE);
 	box(stdscr, '|', '#');
-	print_in_middle("PLAY", 0, 0);
-	print_in_middle("QUIT", 1, 0);
-	print_in_middle(">>", selected, -5);
+	print_in_middle("PLAY EASY", 0, 0);
+	print_in_middle("PLAY MEDIUM", 1, 0);
+	print_in_middle("PLAY HARD", 2, 0);
+	print_in_middle("QUIT", 3, 0);
+	print_in_middle(">>", selected, -7);
 	refresh();
 	key = getch();
 
 	if (key == KEY_UP && selected > 0)
 		return (menu(selected - 1));
-	if (key == KEY_DOWN && selected < 1)
+	if (key == KEY_DOWN && selected < 3)
 		return (menu(selected + 1));
 	else if (key == '\n')
 	{
 		if (selected == 0)
 			return 0;
 		if (selected == 1)
+			return 1;
+		if (selected == 2)
+			return 2;
+		if (selected == 3)
 			return -1;
 	}
 	return (menu(selected));
@@ -133,13 +158,15 @@ int	loop()
 {
 	int			time = 0;
 	int			key = 0;
+	int			difficulty = -1;
 	t_map_data	*map = NULL;
 
-	if (menu(0) == -1)
+	difficulty = menu(0);
+	if (difficulty == -1)
 		return (0);
 	nodelay(stdscr, TRUE);
 
-	map = create_map();
+	map = create_map(difficulty);
 	if (map == NULL)
 	{
 		cleanup(map);
@@ -151,7 +178,7 @@ int	loop()
 		// update cycle
 		if (update_player(map, time, key) == -1)
 			break;
-		update_bg(map->obstacles, time);
+		update_bg(map, time);
 		ememy_update(map);
 
 		// render screen

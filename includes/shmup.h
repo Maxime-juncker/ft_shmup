@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 16:50:21 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:41:24 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ typedef struct map_data
 	t_bullet	*bullets[MAX_BULLET];
 	int			**obstacles;
 	int			score;
+	int			asteroid_rate;
+	int			basic_enemy_rate;
+	int			hard_enemy_rate;
 
 } t_map_data;
 
@@ -60,7 +63,7 @@ int	get_inactive_bullet(t_bullet *bullets[MAX_BULLET]);
 int fire(t_map_data *map, int time);
 
 // bacground.c
-int			update_bg(int **obstacles, int time);
+int			update_bg(t_map_data *map, int time);
 int			**create_bg();
 
 // collision.c

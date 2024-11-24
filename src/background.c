@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:33 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 14:58:05 by mchemari         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:41:04 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@ void	update_obstacles(int **obstacles, int time)
 	}
 }
 
-int	create_obstacle(int **obstacles, int time)
+int	create_obstacle(t_map_data *map, int time)
 {
 	int y = 0;
+	int r ;
 
+	srand(time);
+	r = rand();
 	while (y < LINES)
 	{
-		srand(time);
-		if ((rand() + y) % 200 == 1)
-			obstacles[y][COLS - 1] = 2; // 2 = asteroid
-		else if ((rand() + y) % 400 == 1)
-			obstacles[y][COLS - 1] = 4; // 4 = enemy basic
-		else if ((rand() + y) % 400 == 1)
-			obstacles[y][COLS - 1] = 6; // 4 = enemy harder
+		if ((rand() + y) % map->asteroid_rate == 1)
+			map->obstacles[y][COLS - 1] = 2; // 2 = asteroid
+		else if ((rand() + y) % map->basic_enemy_rate == 1)
+			map->obstacles[y][COLS - 1] = 4; // 4 = enemy basic
+		else if ((rand() + y) % map->hard_enemy_rate == 1)
+			map->obstacles[y][COLS - 1] = 6; // 4 = enemy harder
 		y++;
 	}
 	return (1);
@@ -75,12 +77,12 @@ int **create_bg()
 	return (obstacles);
 }
 
-int update_bg(int **obstacles, int time)
+int update_bg(t_map_data *map, int time)
 {
-	create_obstacle(obstacles, time);
+	create_obstacle(map, time);
 
 	attron(COLOR_PAIR(3));
-	update_obstacles(obstacles, time);
+	update_obstacles(map->obstacles, time);
 
 	return (0);
 }
