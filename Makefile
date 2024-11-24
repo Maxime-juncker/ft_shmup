@@ -1,19 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/23 08:09:39 by mjuncker          #+#    #+#              #
-#    Updated: 2024/11/23 10:06:00 by mchemari         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = ft_shmup
 CFLAGS = -Wall -Wextra -Werror -g3 $(INCLUDES_D)
 
-SRC = main.c entities.c
+SRC = main.c entities.c background.c collisions.c monster.c
 OBJ = $(SRC:.c=.o)
 
 OBJ_D = obj/

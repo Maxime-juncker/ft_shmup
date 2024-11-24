@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   entities.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
+/*   Updated: 2024/11/24 10:23:45 by mjuncker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shmup.h"
 
 
@@ -6,19 +18,13 @@
  * @param new the new entity
  * @param entities the arr containing all entities
 */
-void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY])
-{
-	if (!new)
-		return ;
-	entities[new->id] = new;
-}
 
-t_player	*create_player(int row, int col)
+t_entity	*create_player(int row, int col)
 {
-	t_player *player = NULL;
+	t_entity *player = NULL;
 	(void)col;
 
-	player = ft_calloc(sizeof(t_player), 1);
+	player = ft_calloc(sizeof(t_entity), 1);
 	if (!player) // !! maybe replace later by calling a cleanup funciton
 		return (NULL);
 
@@ -26,13 +32,13 @@ t_player	*create_player(int row, int col)
 	player->x = 2;
 	player->y = row / 2;
 	player->speed = 1;
-	player->health = 1;
+	player->health = 100;
 	player->character = '>';
-	player->fireate = 1;
+	player->fireate = 20;
 	return (player);
 }
 
-t_bullet	*create_bullet()
+t_bullet	*create_bullet(int speed)
 {
 	t_bullet	*bullet;
 
@@ -41,19 +47,15 @@ t_bullet	*create_bullet()
 		return (NULL);
 	bullet->active = 0;
 	bullet->character = '-';
+	bullet->speed = speed;
 	return (bullet);
 }
 
 
 t_entity	*create_entity(int id)
 {
-	// static int 	id = 0;
 	t_entity *entity = NULL;
 
-	// if (id == PLAYER_ID)
-	// 	return (create_player());
-	// id++;
-	
 	if (id > MAX_ENTITY)
 		return (NULL);
 	entity = ft_calloc(sizeof(t_entity), 1);
