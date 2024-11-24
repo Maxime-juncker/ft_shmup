@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 12:25:27 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:45:03 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <libft.h>
 
 # ifndef MAX_BULLET
-# define MAX_BULLET 128
+# define MAX_BULLET 512
 # endif
 typedef struct s_entity
 {
@@ -57,7 +57,7 @@ t_bullet	*create_bullet(int speed);
 // bullet.c
 void bullet_update(t_bullet *bullet, t_map_data *map);
 int	get_inactive_bullet(t_bullet *bullets[MAX_BULLET]);
-void fire(t_map_data *map, int time);
+int fire(t_map_data *map, int time);
 
 // bacground.c
 int			update_bg(int **obstacles, int time);
@@ -72,7 +72,7 @@ int 		player_collision(t_entity *player, int **obstacles);
 void		ememy_update(t_map_data *map);
 
 // Renderer.c
-void	render_frame(t_map_data *map, int time);
+void	render_frame(t_map_data *map);
 
 
 #endif

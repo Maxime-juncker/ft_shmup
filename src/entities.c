@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 12:25:23 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:38:31 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_entity	*create_player(int row, int col)
 	(void)col;
 
 	player = ft_calloc(sizeof(t_entity), 1);
-	if (!player) // !! maybe replace later by calling a cleanup funciton
+	if (!player)
 		return (NULL);
 
 	player->x = 2;
@@ -33,7 +33,7 @@ t_entity	*create_player(int row, int col)
 	player->speed = 1;
 	player->health = 100;
 	player->character = '>';
-	player->fireate = 20;
+	player->fireate = 40;
 	return (player);
 }
 

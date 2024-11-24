@@ -2,7 +2,7 @@ NAME = ft_shmup
 CFLAGS = -Wall -Wextra -Werror -g3 $(INCLUDES_D)
 
 SRC = main.c entities.c background.c \
-      collisions.c monster.c bullet.c \
+      collisions.c enemy.c bullet.c \
       renderer.c
 OBJ = $(SRC:.c=.o)
 

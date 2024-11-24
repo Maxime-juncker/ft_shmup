@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   renderer.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/24 13:38:48 by mjuncker          #+#    #+#             */
+/*   Updated: 2024/11/24 13:44:41 by mjuncker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shmup.h"
 
-void	draw_hud(t_map_data *map, int time)
+void	draw_hud(t_map_data *map)
 {
 	if (map->player->health <= 25)
 		attron(COLOR_PAIR(2));
@@ -9,7 +21,7 @@ void	draw_hud(t_map_data *map, int time)
 	box(stdscr, ACS_VLINE, ACS_HLINE);
 	move(1, 1);
 	printw("score=%dp  x=%d  y=%d ship-intergrity=%d%%",
-	time, map->player->x, map->player->y, map->player->health);
+	map->score, map->player->x, map->player->y, map->player->health);
 
 }
 
@@ -53,16 +65,21 @@ void	draw_scene(t_map_data *map)
 				attron(COLOR_PAIR(2));
 				mvprintw(y, i, "X");
 			}
+			else if (tmp == 6)
+			{
+				attron(COLOR_PAIR(2));
+				mvprintw(y, i, "<");
+			}
 			i++;
 		}
 		y++;
 	}
 }
 
-void	render_frame(t_map_data *map, int time)
+void	render_frame(t_map_data *map)
 {
 	clear();
 	draw_scene(map);
-	draw_hud(map, time);
+	draw_hud(map);
 	refresh();
 }
