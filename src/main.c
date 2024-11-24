@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:42 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 18:11:12 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:18:16 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ t_map_data	*create_map(int difficulty)
 
 int	update_player(t_map_data *map, int time, int key)
 {
-	if (key == KEY_UP && map->player->y > 1)map->player->y -= 1;
-	if (key == KEY_DOWN && map->player->y < LINES - 1)map->player->y += 1;
+	if (key == KEY_UP && map->player->y > 2)map->player->y -= 1;
+	if (key == KEY_DOWN && map->player->y < LINES - 2)map->player->y += 1;
 	if (key == KEY_LEFT && map->player->x > 1)map->player->x -= 1;
 	if (key == KEY_RIGHT && map->player->x < COLS - 1)map->player->x += 1;
 	if (fire(map, time) == -1)
