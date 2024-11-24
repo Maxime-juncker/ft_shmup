@@ -8,7 +8,6 @@ void bullet_update(t_bullet *bullet, t_map_data *map)
 	if (!bullet)
 		return ;
 	attron(COLOR_PAIR(bullet->color));
-	mvprintw(bullet->y, bullet->x, "%c", bullet->character);
 	if (bullet_collision(bullet, map->obstacles) ||
 	 bullet->x >= COLS || bullet->x <= 0)
 		bullet->active = false;

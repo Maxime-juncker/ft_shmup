@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 10:23:45 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 12:25:23 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_entity	*create_player(int row, int col)
 	if (!player) // !! maybe replace later by calling a cleanup funciton
 		return (NULL);
 
-	player->id = PLAYER_ID;
 	player->x = 2;
 	player->y = row / 2;
 	player->speed = 1;
@@ -49,23 +48,4 @@ t_bullet	*create_bullet(int speed)
 	bullet->character = '-';
 	bullet->speed = speed;
 	return (bullet);
-}
-
-
-t_entity	*create_entity(int id)
-{
-	t_entity *entity = NULL;
-
-	if (id > MAX_ENTITY)
-		return (NULL);
-	entity = ft_calloc(sizeof(t_entity), 1);
-	if (!entity)
-		return (NULL);
-
-	entity->id = id;
-	entity->speed = 1;
-	entity->health = 1;
-	entity->fireate = 1;
-	entity->character = 'x';
-	return (entity);
 }

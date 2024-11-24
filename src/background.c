@@ -6,7 +6,6 @@ static void	update_obstacles(int **obstacles, int time)
 	int y = 0;
 	int	tmp = 0;
 
-	box(stdscr, ACS_VLINE, ACS_HLINE);
 
 	while (y < LINES)
 	{
@@ -23,17 +22,6 @@ static void	update_obstacles(int **obstacles, int time)
 			{
 				obstacles[y][x-1] = tmp;
 				obstacles[y][x] = 0;
-			}
-			move(y, x);
-			if (tmp == 2)
-			{
-				attron(COLOR_PAIR(3));
-				addch('o');
-			}
-			else if (tmp == 4)
-			{
-				attron(COLOR_PAIR(2));
-				addch('X');
 			}
 			x++;
 		}
@@ -70,7 +58,7 @@ int **create_bg()
 	return (obstacles);
 }
 
-int draw_bg(int **obstacles, int time)
+int update_bg(int **obstacles, int time)
 {
 	create_obstacle(obstacles, time);
 
@@ -78,5 +66,4 @@ int draw_bg(int **obstacles, int time)
 	update_obstacles(obstacles, time);
 
 	return (0);
-
 }
