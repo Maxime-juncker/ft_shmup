@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 18:01:30 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:08:20 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct map_data
 } t_map_data;
 
 // entity.c
-t_entity	*create_player(int row, int col);
+t_entity	*create_player(int row);
 t_bullet	*create_bullet(int speed);
 
 // bullet.c

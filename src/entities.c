@@ -6,13 +6,13 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 18:00:36 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:09:54 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shmup.h"
 
-t_entity	*create_player(int row, int col)
+t_entity	*create_player(int row)
 {
 	t_entity *player = NULL;
 
@@ -25,7 +25,7 @@ t_entity	*create_player(int row, int col)
 	player->speed = 1;
 	player->health = 100;
 	player->character = '>';
-	player->fireate = 50;
+	player->fireate = 15;
 	return (player);
 }
 

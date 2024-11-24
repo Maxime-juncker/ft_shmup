@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:42 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 18:00:49 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:11:12 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_map_data	*create_map(int difficulty)
 	if (map == NULL)
 		return (NULL);
 
-	map->player = create_player(LINES, COLS);
+	map->player = create_player(LINES);
 	if (map->player == NULL)
 		return (NULL);
 	map->obstacles = create_bg();
@@ -129,7 +129,9 @@ int menu(int selected)
 	box(stdscr, '|', '#');
 	print_in_middle("PLAY EASY", 0, 0);
 	print_in_middle("PLAY MEDIUM", 1, 0);
+	attron(COLOR_PAIR(2));
 	print_in_middle("PLAY HARD", 2, 0);
+	attron(COLOR_PAIR(3));
 	print_in_middle("QUIT", 3, 0);
 	print_in_middle(">>", selected, -7);
 	refresh();

@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:53 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 18:01:20 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:13:15 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ememy_update(t_map_data *map)
 			{
 				enemy_fire(x, y, map->bullets);
 			}
-			if (tmp == 6 && rand() % 70 == 0)
+			if (tmp == 1 && rand() % 40 == 0)
 			{
 				enemy_fire(x, y, map->bullets);
 			}

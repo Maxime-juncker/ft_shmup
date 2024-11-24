@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:33 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 17:41:04 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:12:08 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	create_obstacle(t_map_data *map, int time)
 		else if ((rand() + y) % map->basic_enemy_rate == 1)
 			map->obstacles[y][COLS - 1] = 4; // 4 = enemy basic
 		else if ((rand() + y) % map->hard_enemy_rate == 1)
-			map->obstacles[y][COLS - 1] = 6; // 4 = enemy harder
+			map->obstacles[y][COLS - 1] = 1; // 4 = enemy harder
 		y++;
 	}
 	return (1);

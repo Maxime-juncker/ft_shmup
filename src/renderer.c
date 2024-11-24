@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:48 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 18:01:15 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:12:47 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_scene(t_map_data *map)
 				attron(COLOR_PAIR(2));
 				mvprintw(y, i, "X");
 			}
-			else if (tmp == 6)
+			else if (tmp == 1)
 			{
 				attron(COLOR_PAIR(2));
 				mvprintw(y, i, "<");
