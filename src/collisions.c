@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:28 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 17:24:37 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:57:23 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int obstacle_collide(int **obstacles, int xsrc, int ysrc)
 
 int bullet_collision(t_bullet *bullet, int **obstacles)
 {
+	if (bullet->speed < 0)
+		return (0);
 	return (obstacle_collide(obstacles, bullet->x, bullet->y));
 }
 

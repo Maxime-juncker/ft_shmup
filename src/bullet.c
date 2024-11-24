@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:24 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 13:41:12 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:57:43 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@ void bullet_update(t_bullet *bullet, t_map_data *map)
 	if (!bullet)
 		return ;
 	attron(COLOR_PAIR(bullet->color));
-	if (bullet_collision(bullet, map->obstacles) ||
-		bullet->x >= COLS || bullet->x <= 0)
+	(void)map;
+	if (bullet->x >= COLS || bullet->x <= 0)
 	{
-		bullet->active = false;
-		map->score += 25;
+		bullet->active = 0;
+		return ;
 	}
-	else if (collide(map->player->x, map->player->y, bullet->x, bullet->y))
+	if (collide(map->player->x, map->player->y, bullet->x, bullet->y))
 	{
 		bullet->active = false;
 		map->player->health -= 45;
+	}
+	else if ((bullet_collision(bullet, map->obstacles)))
+	{
+		bullet->active = false;
+		map->score += 25;
 	}
 	bullet->x += bullet->speed;
 	attron(COLOR_PAIR(3));

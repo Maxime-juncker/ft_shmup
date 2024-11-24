@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 13:38:31 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:58:27 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_entity	*create_player(int row, int col)
 	player->speed = 1;
 	player->health = 100;
 	player->character = '>';
-	player->fireate = 40;
+	player->fireate = 50;
 	return (player);
 }
 
