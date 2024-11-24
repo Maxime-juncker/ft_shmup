@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 10:23:22 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:24:20 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct s_entity
 	int	fireate;
 	int	health;
 	char character;
-	
-	struct s_entity	*next;
 
 } t_entity;
 
@@ -51,24 +49,30 @@ typedef struct s_bullet
 	int color;
 } t_bullet;
 
-void	add_entity(t_entity *new, t_entity *entities[MAX_ENTITY]);
+typedef struct map_data
+{
+	t_entity	*player;
+	t_bullet	*bullets[MAX_BULLET];
+	int			**obstacles;
+
+} t_map_data;
+
+int			get_inactive_bullet(t_bullet *bullets[MAX_BULLET]);
 t_entity	*create_player(int row, int col);
 t_entity	*create_entity(int id);
 t_bullet	*create_bullet(int speed);
-int			get_inactive_bullet(t_bullet *bullets[MAX_BULLET]);
 
+void bullet_update(t_bullet *bullet, t_map_data *map);
+int	get_inactive_bullet(t_bullet *bullets[MAX_BULLET]);
+void fire(t_map_data *map, int time);
 
-int draw_bg(int **obstacles, int time);
-int **create_bg();
+int			draw_bg(int **obstacles, int time);
+int			**create_bg();
 
-int	collide(int x1, int y1, int x2, int y2);
-int bullet_collision(t_bullet *bullet, int **obstacles);
-int player_collision(t_entity *player, int **obstacles);
+int			collide(int x1, int y1, int x2, int y2);
+int 		bullet_collision(t_bullet *bullet, int **obstacles);
+int 		player_collision(t_entity *player, int **obstacles);
 
-t_entity *add_monster(t_entity *head, int x, int y);
-t_entity   *remove_monster(t_entity *head, t_entity *to_remove);
-int check_collide(t_entity *player, t_entity *monster);
-t_entity *monsters_collide(t_entity *player, t_entity *monsters);
-void	ememy_update(int **obstacles, t_bullet *bullets[MAX_BULLET]);
+void		ememy_update(t_map_data *map);
 
 #endif
