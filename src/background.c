@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:33 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 13:44:30 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:58:05 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	update_obstacles(int **obstacles, int time)
 {
-	int x = 0;
-	int y = 0;
+	int	x = 0;
+	int	y = 0;
 	int	tmp = 0;
-
 
 	while (y < LINES)
 	{
@@ -28,12 +27,12 @@ void	update_obstacles(int **obstacles, int time)
 			if (tmp == 0)
 			{
 				x++;
-				continue;
+				continue ;
 			}
 			if (time % tmp == 0)
 			{
 				if (x - 1 > 0)
-					obstacles[y][x-1] = tmp;
+					obstacles[y][x - 1] = tmp;
 				obstacles[y][x] = 0;
 			}
 			x++;
@@ -42,14 +41,13 @@ void	update_obstacles(int **obstacles, int time)
 	}
 }
 
-int create_obstacle(int **obstacles, int time)
+int	create_obstacle(int **obstacles, int time)
 {
 	int y = 0;
 
 	while (y < LINES)
 	{
 		srand(time);
-
 		if ((rand() + y) % 200 == 1)
 			obstacles[y][COLS - 1] = 2; // 2 = asteroid
 		else if ((rand() + y) % 400 == 1)
