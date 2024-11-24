@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 22:04:13 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/18 17:03:17 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:26:29 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,6 @@ char	*u_ft_itoa(unsigned int n)
 		return (NULL);
 	if (n == 0)
 		res[0] = '0';
-	if (nb < 0)
-	{
-		nb *= -1;
-		res[0] = '-';
-	}
 	while (nb > 0)
 	{
 		res[len - i++ - 1] = (nb % 10) + '0';

@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:33 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 18:12:08 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:26:43 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ void	update_obstacles(int **obstacles, int time)
 int	create_obstacle(t_map_data *map, int time)
 {
 	int y = 0;
-	int r ;
 
 	srand(time);
-	r = rand();
 	while (y < LINES)
 	{
 		if ((rand() + y) % map->asteroid_rate == 1)
