@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:28 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 13:38:29 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:24:37 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,13 @@ int	collide(int x1, int y1, int x2, int y2)
 
 int obstacle_collide(int **obstacles, int xsrc, int ysrc)
 {
-	int x = 0;
-	int y = 0;
-
-	while (y < LINES)
+	if (xsrc >= COLS - 1)
+		return (0);
+	if (obstacles[ysrc][xsrc] > 0 || obstacles[ysrc][xsrc + 1] > 0)
 	{
-		x = 0;
-		while (x < COLS)
-		{
-			if ((obstacles[y][x] > 0 || obstacles[y][x - 1] > 0)
-				&& collide(xsrc, ysrc, x, y))
-			{
-				obstacles[y][x] = 0;
-				obstacles[y][x - 1] = 0;
-				return (1);
-			}
-			x++;
-		}
-		y++;
+		obstacles[ysrc][xsrc] = 0;
+		obstacles[ysrc][xsrc + 1] = 0;
+		return (1);
 	}
 	return (0);
 }

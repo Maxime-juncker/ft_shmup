@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:42 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 15:29:33 by mchemari         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:25:55 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	game_stop(t_map_data *map, int time)
 
 void	game_over(t_map_data *map, int time)
 {
-	int total_secondes = time / 60;
+	int total_secondes = time / 40;
 	nodelay(stdscr, FALSE);
 	clear();
 	box(stdscr, ACS_VLINE, ACS_HLINE);
@@ -95,12 +95,51 @@ void	game_over(t_map_data *map, int time)
 	getch();
 }
 
+void	print_in_middle(char *msg, int y_offset, int x_offset)
+{
+	int len = ft_strlen(msg);
+	mvprintw(LINES / 2 + y_offset, (COLS / 2) - len + x_offset, "%s", msg);
+}
+
+int menu(int selected)
+{
+	int	key = -1;
+
+	clear();
+	nodelay(stdscr, FALSE);
+	box(stdscr, '|', '#');
+	print_in_middle("PLAY", 0, 0);
+	print_in_middle("QUIT", 1, 0);
+	print_in_middle(">>", selected, -5);
+	refresh();
+	key = getch();
+
+	if (key == KEY_UP && selected > 0)
+		return (menu(selected - 1));
+	if (key == KEY_DOWN && selected < 1)
+		return (menu(selected + 1));
+	else if (key == '\n')
+	{
+		if (selected == 0)
+			return 0;
+		if (selected == 1)
+			return -1;
+	}
+	return (menu(selected));
+
+}
+
 int	loop()
 {
 	int			time = 0;
 	int			key = 0;
-	t_map_data	*map = create_map();
+	t_map_data	*map = NULL;
 
+	if (menu(0) == -1)
+		return (0);
+	nodelay(stdscr, TRUE);
+
+	map = create_map();
 	if (map == NULL)
 	{
 		cleanup(map);
@@ -110,16 +149,16 @@ int	loop()
 	while ((key = getch()) != 'q' && !game_stop(map, time))
 	{
 		// update cycle
-		update_bg(map->obstacles, time);
-		ememy_update(map);
 		if (update_player(map, time, key) == -1)
 			break;
+		update_bg(map->obstacles, time);
+		ememy_update(map);
 
 		// render screen
 		render_frame(map);
 
 		// wait next frame
-		napms(16);
+		napms(25);
 		time++;
 	}
 	game_over(map, time);
@@ -134,7 +173,7 @@ void init()
 
 	curs_set(0);
 	nodelay(stdscr, TRUE);
-	keypad(stdscr, TRUE);\
+	keypad(stdscr, TRUE);
 
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);

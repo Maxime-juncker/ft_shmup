@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 13:45:03 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:50:21 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <libft.h>
 
 # ifndef MAX_BULLET
-# define MAX_BULLET 512
+# define MAX_BULLET 2048
 # endif
 typedef struct s_entity
 {
