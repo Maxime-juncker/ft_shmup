@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:53 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 16:52:10 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:01:20 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void enemy_fire(int x, int y, t_bullet *bullets[MAX_BULLET])
 	bullets[i]->speed = -2;
 	bullets[i]->active = 1;
 	bullets[i]->color = 2;
-
 }
 
 void	ememy_update(t_map_data *map)

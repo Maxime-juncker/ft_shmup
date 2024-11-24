@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:42 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 17:50:03 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:00:49 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ int menu(int selected)
 			return -1;
 	}
 	return (menu(selected));
-
 }
 
 int	loop()

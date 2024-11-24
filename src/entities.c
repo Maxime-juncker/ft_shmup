@@ -6,23 +6,15 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:50:25 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 17:58:27 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:00:36 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shmup.h"
 
-
-/*
- * Add new entity to the entities arr
- * @param new the new entity
- * @param entities the arr containing all entities
-*/
-
 t_entity	*create_player(int row, int col)
 {
 	t_entity *player = NULL;
-	(void)col;
 
 	player = ft_calloc(sizeof(t_entity), 1);
 	if (!player)

@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:48 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 17:26:13 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:01:15 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	draw_hud(t_map_data *map)
 	move(1, 1);
 	printw("score=%dp  x=%d  y=%d  ship-intergrity=%d%%",
 	map->score, map->player->x, map->player->y, map->player->health);
-
 }
 
 void	draw_scene(t_map_data *map)

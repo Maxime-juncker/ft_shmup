@@ -6,7 +6,7 @@
 /*   By: mjuncker <mjuncker@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:10:22 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 17:41:24 by mjuncker         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:01:30 by mjuncker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,5 @@ void		ememy_update(t_map_data *map);
 
 // Renderer.c
 void	render_frame(t_map_data *map);
-
 
 #endif
