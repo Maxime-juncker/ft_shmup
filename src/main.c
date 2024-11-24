@@ -6,7 +6,7 @@
 /*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:38:42 by mjuncker          #+#    #+#             */
-/*   Updated: 2024/11/24 14:10:50 by mchemari         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:29:33 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ int	game_stop(t_map_data *map, int time)
 	return (map->player->health <= 0 || time >= 2147483645);
 }
 
-void	game_over(t_map_data *map)
+void	game_over(t_map_data *map, int time)
 {
+	int total_secondes = time / 60;
 	nodelay(stdscr, FALSE);
 	clear();
 	box(stdscr, ACS_VLINE, ACS_HLINE);
-	mvprintw(LINES / 2, (COLS / 2) - 8, "Final score : %d", map->score);
+	mvprintw(LINES / 2 - 1, (COLS / 2) - 10, "Final score : %d", map->score);
+	mvprintw(LINES / 2, (COLS / 2) - 9, "Survived : %dm %ds", total_secondes / 60, total_secondes % 60);
 	refresh();
 	getch();
 }
@@ -120,7 +122,7 @@ int	loop()
 		napms(16);
 		time++;
 	}
-	game_over(map);
+	game_over(map, time);
 	return (cleanup(map));
 }
 
